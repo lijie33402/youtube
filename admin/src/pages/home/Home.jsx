@@ -6,7 +6,7 @@ import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { eventNames } from "../../../../api/models/User";
+// import { eventNames } from "../../../../api/models/User";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 

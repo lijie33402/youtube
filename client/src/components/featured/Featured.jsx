@@ -17,7 +17,7 @@ export default function Featured({ type, setGenre }) {
               "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
-        setContent(res.data[0]);
+        setContent(res.data[0] || {});
       } catch (err) {
         console.log(err);
       }
