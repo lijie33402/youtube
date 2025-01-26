@@ -11,7 +11,7 @@ import {
   getListsSuccess,
 } from "./ListActions";
 
-const axiosInstance = axios.create({ baseURL: process.env.API_URL });
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export const getLists = async (dispatch) => {
   dispatch(getListsStart());
@@ -31,7 +31,7 @@ export const getLists = async (dispatch) => {
 export const createList = async (list, dispatch) => {
   dispatch(createListStart());
   try {
-    const res = await axios.post("/lists", list, {
+    const res = await axiosInstance.post("/lists", list, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },

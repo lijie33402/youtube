@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./register.scss";
 
-const axiosInstance = axios.create({ baseURL: process.env.API_URL });
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export default function Register() {
   const [email, setEmail] = useState("");

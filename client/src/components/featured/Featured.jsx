@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./featured.scss";
 
-const axiosInstance = axios.create({ baseURL: process.env.API_URL });
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
