@@ -24,9 +24,13 @@ export default function Register() {
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
     try {
-      await axiosInstance.post("/auth/register", { email,username, password });
+      console.log('Sending request to:', process.env.REACT_APP_API_URL + '/auth/register');
+      await axiosInstance.post("/auth/register", { email, username, password });
       history.push("/login");
-    } catch (err) {}
+    } catch (err) {
+      console.error("Registration error:", err.response?.data || err.message);
+      alert("注册失败，请重试");
+    }
   };
   return (
     <div className="register">
