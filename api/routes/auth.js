@@ -24,14 +24,20 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
+    console.log("Login attempt for email:", req.body.email);
     const user = await User.findOne({ email: req.body.email });
-    !user && res.status(401).json("Wrong password or username!");
+    if (!user) {
+      console.log("User not found for email:", req.body.email);
+      return res.status(401).json("Wrong password or username!");
+    }
 
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
     const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-    originalPassword !== req.body.password &&
-      res.status(401).json("Wrong password or username!");
+    if (originalPassword !== req.body.password) {
+      console.log("Password mismatch for user:", req.body.email);
+      return res.status(401).json("Wrong password or username!");
+    }
 
     const accessToken = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
@@ -43,6 +49,7 @@ router.post("/login", async (req, res) => {
 
     res.status(200).json({ ...info, accessToken });
   } catch (err) {
+    console.error("Login error:", err);
     res.status(500).json(err);
   }
 });
