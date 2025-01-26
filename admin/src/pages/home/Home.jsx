@@ -8,7 +8,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { eventNames } from "../../../../api/models/User";
 
-const axiosInstance = axios.create({ baseURL: process.env.API_URL });
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export default function Home() {
   const MONTHS = useMemo(

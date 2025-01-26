@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const axiosInstance = axios.create({ baseURL: process.env.API_URL });
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export default function ListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
